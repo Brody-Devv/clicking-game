@@ -61,7 +61,19 @@
           localStorage.setItem('autoClickCost', autoClickCost);
         }
       }
-  
+      function buyMAutoClick() {
+        if (clicks >= macc) {
+          mautoClicks++;
+          clicks -= macc;
+          macc += Math.floor(1000 * Math.pow(1.25, mautoClicks));
+
+          updateClicks();
+          localStorage.setItem('clicks', clicks);
+          localStorage.setItem('mautoClicks', mautoClicks);
+          localStorage.setItem('macc', macc);
+        }
+      }
+
       function startAutoClick() {
         setInterval(function() {
           clicks += autoClicks;
@@ -70,6 +82,18 @@
           localStorage.setItem('autoClicks', autoClicks);
           localStorage.setItem('autoClickCost', autoClickCost);
         }, 1000);
+        updateClicks();
+        startMAutoClick();
+      }
+
+      function startMAutoClick() {
+        setInterval(function() {
+          clicks += mautoClicks;
+          updateClicks();
+          localStorage.setItem('clicks', clicks);
+          localStorage.setItem('mautoClicks', mautoClicks);
+          localStorage.setItem('macc', macc);
+        }, 250);
         updateClicks();
       }
       
