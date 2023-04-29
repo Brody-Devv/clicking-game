@@ -1,1 +1,1 @@
-# clicking-game
+Just A dumb clicking Game

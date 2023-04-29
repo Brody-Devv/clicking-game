@@ -48,13 +48,7 @@
           autoClicks++;
           clicks -= autoClickCost;
           autoClickCost += Math.floor(50 * Math.pow(1.1, autoClicks));
-          setInterval(function() {
-            clicks += autoClicks;
-            updateClicks();
-            localStorage.setItem('clicks', clicks);
-            localStorage.setItem('autoClicks', autoClicks);
-            localStorage.setItem('autoClickCost', autoClickCost);
-          }, 1000);
+
           updateClicks();
           localStorage.setItem('clicks', clicks);
           localStorage.setItem('autoClicks', autoClicks);
