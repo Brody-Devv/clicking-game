@@ -7,11 +7,15 @@
     <h1>Clicker Game</h1>
     <p>Clicks: <span id="clicks"></span></p>
     <p>CPC: <span id="cpc"></span></p>
-    <p>Auto Clicks: <span id="autoClicks"></span></p>
+    <p>Auto Clickers: <span id="autoClicks"></span></p>
+    <p> Mega Auto Clickers: <span id="mautoClicks"></span></p>
     <button onclick="clicked()">Click</button>
     <button onclick="upgrade()">Upgrade CPC ($<span id="cost"></span>)</button>
     <button onclick="buyAutoClick()">Buy Auto Clicker ($<span id="autoCost"></span>)</button>
+    <button onclick="buyMAutoClick()">Buy MAuto Clicker ($<span id="macc"></span>)</button>
     <script>
+      var mautoClicks = parseInt(localStorage.getItem('mautoClicks')) || 0;
+      var macc = parseInt(localStorage.getItem('macc')) || 1000;
       var clicks = parseInt(localStorage.getItem('clicks')) || 0;
       var cpc = parseInt(localStorage.getItem('cpc')) || 1;
       var autoClicks = parseInt(localStorage.getItem('autoClicks')) || 0;
@@ -24,6 +28,7 @@
         document.getElementById("autoClicks").innerHTML = autoClicks;
         document.getElementById("cost").innerHTML = cost;
         document.getElementById("autoCost").innerHTML = autoClickCost;
+        document.getElementById("mautoclicks").innerHTML = mautoClicks;
       }
   
       function clicked() {
