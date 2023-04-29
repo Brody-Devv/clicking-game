@@ -8,12 +8,15 @@
     <p>Clicks: <span id="clicks"></span></p>
     <p>CPC: <span id="cpc"></span></p>
     <p>Auto Clickers: <span id="autoClicks"></span></p>
-    <p> Mega Auto Clickers: <span id="mautoClicks"></span></p>
+    <p>Mega Auto Clickers: <span id="mautoClicks"></span></p>
+    <p>World: <span id="world"></span></p>
     <button onclick="clicked()">Click</button>
     <button onclick="upgrade()">Upgrade CPC ($<span id="cost"></span>)</button>
     <button onclick="buyAutoClick()">Buy Auto Clicker ($<span id="autoCost"></span>)</button>
     <button onclick="buyMAutoClick()">Buy MAuto Clicker ($<span id="macc"></span>)</button>
+    <button onclick="nextworld()">New World ($<span id="wcost"></span>)</button>
     <script>
+      var world = parseInt(localStorage.getItem('world')) || 1;
       var mautoClicks = parseInt(localStorage.getItem('mautoClicks')) || 0;
       var macc = parseInt(localStorage.getItem('macc')) || 1000;
       var clicks = parseInt(localStorage.getItem('clicks')) || 0;
@@ -21,6 +24,7 @@
       var autoClicks = parseInt(localStorage.getItem('autoClicks')) || 0;
       var autoClickCost = parseInt(localStorage.getItem('autoClickCost')) || 50;
       var cost = Math.floor(15 * Math.pow(1.1, cpc));
+      var wcost = parseInt(localStorage.getItem('wcost')) || 100000;
   
       function updateClicks() {
         document.getElementById("clicks").innerHTML = clicks;
@@ -30,10 +34,12 @@
         document.getElementById("autoCost").innerHTML = autoClickCost;
         document.getElementById("mautoClicks").innerHTML = mautoClicks;
         document.getElementById("macc").innerHTML = macc;
+        document.getElementById("world").innerHTML = world;
+        document.getElementById("wcost").innerHTML = wcost;
       }
   
       function clicked() {
-        clicks += cpc;
+        clicks += cpc*world;
         updateClicks();
         localStorage.setItem('clicks', clicks);
       }
@@ -45,6 +51,20 @@
           cost = Math.floor(15 * Math.pow(1.1, cpc));
           localStorage.setItem('cpc', cpc);
           localStorage.setItem('clicks', clicks);
+          updateClicks();
+        }
+      }
+      function nextworld() {
+        if (clicks >= wcost) {
+          world++;
+          wcost = Math.floor(1000 * Math.pow(1.1, world));
+          localStorage.setItem('macc', 1000)
+          localStorage.setItem('cpc', 1);
+          localStorage.setItem('clicks', 0);
+          localStorage.setItem('mautoClicks', 0)
+          localStorage.setItem('autoClicks', 0)
+          localStorage.setItem('autoClickCost', 50)
+          localStorage.setItem('cost', 15)
           updateClicks();
         }
       }
