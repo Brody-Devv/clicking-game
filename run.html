@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <Title>Brody.Devv</Title>
+        <link href="./game.css" rel="stylesheet">
+    </head>
+    <body>
+        
+        <script type="text/javascript">
+            var cpc = 1;
+            var clicks = 0;
+            var cost = 15;
+            function clicked() {
+                clicks += 1*cpc;
+                document.getElementById("clicks").innerHTML = clicks;
+                document.getElementById("cost").innerHTML = cost;
+            };
+            function upgrade() {
+                if (clicks > cost-1) {
+                    cpc += 1;
+                    clicks = clicks-cost;
+                    cost *= 1.2;
+                    cost = Math.round(cost);
+                    document.getElementById("clicks").innerHTML = clicks;
+                    document.getElementById("cost").innerHTML = cost;
+                    document.getElementById("cpc").innerHTML = cpc;
+                }
+            }
+            </script>
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                    document.getElementById("clicks").innerHTML = clicks;
+                    document.getElementById("cost").innerHTML = cost;
+                    document.getElementById("cpc").innerHTML = cpc;
+                });
+            </script>
+            <button type="button" onclick="clicked()">Mine</button>
+            <button type="button" onclick="upgrade()">Upgrade $<a id="cost">15</a></button>
+            <center>
+            <h1>Stats:</h1>
+            <p>Money: $<a id="clicks">0</a></p>
+            <p>$ per Mine: $<a id="cpc">1</a></p>
+            </center>
+    </body>
+
+</html>

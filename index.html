@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clicker Game</title>
+  </head>
+  <body onload="startAutoClick()">
+    <h1>Clicker Game</h1>
+    <p>Clicks: <span id="clicks"></span></p>
+    <p>CPC: <span id="cpc"></span></p>
+    <p>Auto Clicks: <span id="autoClicks"></span></p>
+    <button onclick="clicked()">Click</button>
+    <button onclick="upgrade()">Upgrade CPC ($<span id="cost"></span>)</button>
+    <button onclick="buyAutoClick()">Buy Auto Clicker ($<span id="autoCost"></span>)</button>
+    <script>
+      var clicks = parseInt(localStorage.getItem('clicks')) || 0;
+      var cpc = parseInt(localStorage.getItem('cpc')) || 1;
+      var autoClicks = parseInt(localStorage.getItem('autoClicks')) || 0;
+      var autoClickCost = parseInt(localStorage.getItem('autoClickCost')) || 50;
+      var cost = Math.floor(15 * Math.pow(1.1, cpc));
+  
+      function updateClicks() {
+        document.getElementById("clicks").innerHTML = clicks;
+        document.getElementById("cpc").innerHTML = cpc;
+        document.getElementById("autoClicks").innerHTML = autoClicks;
+        document.getElementById("cost").innerHTML = cost;
+        document.getElementById("autoCost").innerHTML = autoClickCost;
+      }
+  
+      function clicked() {
+        clicks += cpc;
+        updateClicks();
+        localStorage.setItem('clicks', clicks);
+      }
+  
+      function upgrade() {
+        if (clicks >= cost) {
+          cpc++;
+          clicks -= cost;
+          cost = Math.floor(15 * Math.pow(1.1, cpc));
+          localStorage.setItem('cpc', cpc);
+          localStorage.setItem('clicks', clicks);
+          updateClicks();
+        }
+      }
+  
+      function buyAutoClick() {
+        if (clicks >= autoClickCost) {
+          autoClicks++;
+          clicks -= autoClickCost;
+          autoClickCost += Math.floor(50 * Math.pow(1.1, autoClicks));
+          setInterval(function() {
+            clicks += autoClicks;
+            updateClicks();
+            localStorage.setItem('clicks', clicks);
+            localStorage.setItem('autoClicks', autoClicks);
+            localStorage.setItem('autoClickCost', autoClickCost);
+          }, 1000);
+          updateClicks();
+          localStorage.setItem('clicks', clicks);
+          localStorage.setItem('autoClicks', autoClicks);
+          localStorage.setItem('autoClickCost', autoClickCost);
+        }
+      }
+  
+      function startAutoClick() {
+        setInterval(function() {
+          clicks += autoClicks;
+          updateClicks();
+          localStorage.setItem('clicks', clicks);
+          localStorage.setItem('autoClicks', autoClicks);
+          localStorage.setItem('autoClickCost', autoClickCost);
+        }, 1000);
+        updateClicks();
+      }
+      
+      updateClicks();
+    </script>
+  </body>
+</html>
