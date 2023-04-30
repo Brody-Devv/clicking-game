@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Clicker Game</title>
+    <title>Robbery Clicker</title>
   </head>
   <body onload="startAutoClick()">
-    <h1>Clicker Game</h1>
-    <p>Clicks: <span id="clicks"></span></p>
+    <h1>Robbery Clicker</h1>
+    <p>Money: $<span id="clicks"></span></p>
     <p>CPC: <span id="cpc"></span></p>
-    <p>Auto Clickers: <span id="autoClicks"></span></p>
-    <p>Mega Auto Clickers: <span id="mautoClicks"></span></p>
-    <p>World: <span id="world"></span></p>
+    <p>Henchmen: <span id="autoClicks"></span></p>
+    <p>Mega Henchmen: <span id="mautoClicks"></span></p>
+    <p>Bank level: <span id="world"></span></p>
     <button onclick="clicked()">Click</button>
     <button onclick="upgrade()">Upgrade CPC ($<span id="cost"></span>)</button>
-    <button onclick="buyAutoClick()">Buy Auto Clicker ($<span id="autoCost"></span>)</button>
-    <button onclick="buyMAutoClick()">Buy MAuto Clicker ($<span id="macc"></span>)</button>
-    <button onclick="nextworld()">New World ($<span id="wcost"></span>)</button>
+    <button onclick="buyAutoClick()">Buy Henchman ($<span id="autoCost"></span>)</button>
+    <button onclick="buyMAutoClick()">Buy Mega Henchman ($<span id="macc"></span>)</button>
+    <button onclick="nextworld()">Better Bank ($<span id="wcost"></span>)</button>
     <script>
       var world = parseInt(localStorage.getItem('world')) || 1;
       var mautoClicks = parseInt(localStorage.getItem('mautoClicks')) || 0;
