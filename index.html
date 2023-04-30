@@ -82,7 +82,7 @@
         if (clicks >= autoClickCost) {
           autoClicks++;
           clicks -= autoClickCost;
-          autoClickCost += Math.floor(50 * Math.pow(1.1, autoClicks));
+          autoClickCost += Math.floor(50 * Math.pow(1.22, autoClicks));
 
           updateClicks();
           localStorage.setItem('clicks', clicks);
@@ -94,7 +94,7 @@
         if (clicks >= macc) {
           mautoClicks++;
           clicks -= macc;
-          macc += Math.floor(1000 * Math.pow(1.25, mautoClicks));
+          macc += Math.floor(1000 * Math.pow(1.36, mautoClicks));
 
           updateClicks();
           localStorage.setItem('clicks', clicks);
