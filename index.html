@@ -48,7 +48,7 @@
         if (clicks >= cost) {
           cpc += 1*world;
           clicks -= cost;
-          cost = Math.floor(15 * Math.pow(1.1, cpc));
+          cost = Math.floor(15 * Math.pow(1.25, cpc));
           localStorage.setItem('cpc', cpc);
           localStorage.setItem('clicks', clicks);
           updateClicks();
@@ -82,7 +82,7 @@
         if (clicks >= autoClickCost) {
           autoClicks++;
           clicks -= autoClickCost;
-          autoClickCost += Math.floor(50 * Math.pow(1.22, autoClicks));
+          autoClickCost += Math.floor(50 * Math.pow(1.5, autoClicks));
 
           updateClicks();
           localStorage.setItem('clicks', clicks);
@@ -94,7 +94,7 @@
         if (clicks >= macc) {
           mautoClicks++;
           clicks -= macc;
-          macc += Math.floor(1000 * Math.pow(1.36, mautoClicks));
+          macc += Math.floor(1000 * Math.pow(1.82, mautoClicks));
 
           updateClicks();
           localStorage.setItem('clicks', clicks);
