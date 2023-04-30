@@ -39,14 +39,14 @@
       }
   
       function clicked() {
-        clicks += cpc*world;
+        clicks += cpc;
         updateClicks();
         localStorage.setItem('clicks', clicks);
       }
   
       function upgrade() {
         if (clicks >= cost) {
-          cpc++;
+          cpc += 1*world;
           clicks -= cost;
           cost = Math.floor(15 * Math.pow(1.1, cpc));
           localStorage.setItem('cpc', cpc);
