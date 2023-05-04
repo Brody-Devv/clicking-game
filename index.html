@@ -3,7 +3,7 @@
   <head>
     <title>Robbery Clicker</title>
   </head>
-  <body onload="startAutoClick()">
+  <body onload="startAutoClick()" onload="startMAutoClick">
     <h1>Robbery Clicker</h1>
     <p>Money: $<span id="clicks"></span></p>
     <p>Bag size: <span id="cpc"></span></p>
@@ -24,7 +24,7 @@
       var autoClicks = parseInt(localStorage.getItem('autoClicks')) || 0;
       var autoClickCost = parseInt(localStorage.getItem('autoClickCost')) || 50;
       var cost = Math.floor(15 * Math.pow(1.1, cpc));
-      var wcost = parseInt(localStorage.getItem('wcost')) || 100000;
+      var wcost = parseInt(localStorage.getItem('wcost')) || 1000000;
   
       function updateClicks() {
         document.getElementById("clicks").innerHTML = clicks;
@@ -80,7 +80,7 @@
   
       function buyAutoClick() {
         if (clicks >= autoClickCost) {
-          autoClicks++;
+          autoClicks += 1*world;
           clicks -= autoClickCost;
           autoClickCost += Math.floor(50 * Math.pow(1.5, autoClicks));
 
@@ -92,7 +92,7 @@
       }
       function buyMAutoClick() {
         if (clicks >= macc) {
-          mautoClicks++;
+          mautoClicks += 1*world;
           clicks -= macc;
           macc += Math.floor(1000 * Math.pow(1.82, mautoClicks));
 
