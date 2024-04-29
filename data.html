@@ -3,15 +3,14 @@
   <head>
     <title>Robbery Clicker</title>
   </head>
-  <body onload="startAutoClick()">
+  <body onload="startAutoClick()" onload="startMAutoClick">
     <h1>Robbery Clicker</h1>
     <p>Money: $<span id="clicks"></span></p>
     <p>Bag size: <span id="cpc"></span></p>
     <p>Henchmen: <span id="autoClicks"></span></p>
     <p>Mega Henchmen: <span id="mautoClicks"></span></p>
     <p>Bank level: <span id="world"></span></p>
-    <center><input onclick="clicked()" type="image" src="https://webstockreview.net/images/bank-clipart-11.png" name="submit" width="100" height="48" alt="submit"/></center>
-    <br>
+    <button onclick="clicked()">Steal $</button>
     <button onclick="upgrade()">Upgrade bag ($<span id="cost"></span>)</button>
     <button onclick="buyAutoClick()">Buy Henchman ($<span id="autoCost"></span>)</button>
     <button onclick="buyMAutoClick()">Buy Mega Henchman ($<span id="macc"></span>)</button>
@@ -25,7 +24,7 @@
       var autoClicks = parseInt(localStorage.getItem('autoClicks')) || 0;
       var autoClickCost = parseInt(localStorage.getItem('autoClickCost')) || 50;
       var cost = Math.floor(15 * Math.pow(1.1, cpc));
-      var wcost = parseInt(localStorage.getItem('wcost')) || 100000;
+      var wcost = parseInt(localStorage.getItem('wcost')) || 1000000;
   
       function updateClicks() {
         document.getElementById("clicks").innerHTML = clicks;
@@ -49,7 +48,7 @@
         if (clicks >= cost) {
           cpc += 1*world;
           clicks -= cost;
-          cost = Math.floor(15 * Math.pow(1.1, cpc));
+          cost = Math.floor(15 * Math.pow(1.25, cpc));
           localStorage.setItem('cpc', cpc);
           localStorage.setItem('clicks', clicks);
           updateClicks();
@@ -81,9 +80,9 @@
   
       function buyAutoClick() {
         if (clicks >= autoClickCost) {
-          autoClicks++;
+          autoClicks += 1*world;
           clicks -= autoClickCost;
-          autoClickCost += Math.floor(50 * Math.pow(1.1, autoClicks));
+          autoClickCost += Math.floor(50 * Math.pow(1.5, autoClicks));
 
           updateClicks();
           localStorage.setItem('clicks', clicks);
@@ -93,9 +92,9 @@
       }
       function buyMAutoClick() {
         if (clicks >= macc) {
-          mautoClicks++;
+          mautoClicks += 1*world;
           clicks -= macc;
-          macc += Math.floor(1000 * Math.pow(1.25, mautoClicks));
+          macc += Math.floor(1000 * Math.pow(1.82, mautoClicks));
 
           updateClicks();
           localStorage.setItem('clicks', clicks);
